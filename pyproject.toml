@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plant-health-platform"
+version = "0.1.0"
+description = "A local-first platform for longitudinal houseplant health tracking and optimization."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "sqlalchemy>=2.0,<3.0",
+    "alembic>=1.13,<2.0",
+    "pydantic>=2.7,<3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<10",
+    "ruff>=0.8,<1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"

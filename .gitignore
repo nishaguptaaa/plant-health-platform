@@ -1,0 +1,30 @@
+# Python environment
+.venv/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Secrets
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local/private project data
+*.db
+*.sqlite
+*.sqlite3
+uploads/
+data/private/
+
+# Generated ML models
+models/artifacts/
