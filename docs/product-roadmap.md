@@ -487,9 +487,9 @@ Review licenses again before any commercial release.
 
 ### Phase 4: Environment
 
-- [ ] Weather snapshots
-- [ ] Weather-provider interface
-- [ ] Open-Meteo integration
+- [x] Weather snapshots
+- [x] Weather-provider interface
+- [x] Open-Meteo integration
 - [ ] Manual light measurements
 - [ ] Light estimation
 - [ ] Optional sensors

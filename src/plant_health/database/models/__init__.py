@@ -81,6 +81,11 @@ from plant_health.database.models.treatment import (
     TreatmentOutcome,
     TreatmentStatus,
 )
+from plant_health.database.models.weather import (
+    WeatherCondition,
+    WeatherRecordType,
+    WeatherSnapshot,
+)
 from plant_health.database.models.zone import (
     EnvironmentalZone,
     ObstructionLevel,
@@ -148,6 +153,9 @@ __all__ = [
     "TreatmentStatus",
     "UUIDPrimaryKeyMixin",
     "User",
+    "WeatherCondition",
+    "WeatherRecordType",
+    "WeatherSnapshot",
     "ZoneLightSource",
     "ZoneType",
 ]
