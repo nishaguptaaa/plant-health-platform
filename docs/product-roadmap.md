@@ -469,8 +469,8 @@ Review licenses again before any commercial release.
 
 - [x] Species
 - [x] Individual plants
-- [ ] Plant lifecycle
-- [ ] Location history
+- [x] Plant lifecycle
+- [x] Location history
 - [ ] Containers
 - [ ] Growing methods
 - [ ] Substrates and water culture

@@ -1,6 +1,12 @@
 """SQLAlchemy database models."""
 
 from plant_health.database.models.common import TimestampMixin, UUIDPrimaryKeyMixin
+from plant_health.database.models.history import (
+    LifecycleEventType,
+    LocationChangeReason,
+    PlantLifecycleEvent,
+    PlantLocationHistory,
+)
 from plant_health.database.models.identity import (
     Household,
     HouseholdMembership,
@@ -33,11 +39,15 @@ __all__ = [
     "HouseholdMembership",
     "HouseholdRole",
     "IdentificationStatus",
+    "LifecycleEventType",
     "LightSource",
     "LightSourceType",
+    "LocationChangeReason",
     "ObstructionLevel",
     "OrientationSource",
     "Plant",
+    "PlantLifecycleEvent",
+    "PlantLocationHistory",
     "PlantStatus",
     "Site",
     "SiteType",
