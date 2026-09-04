@@ -1,5 +1,10 @@
-"""Weather-provider integrations."""
+"""Weather-provider and location-search integrations."""
 
+from plant_health.weather.geocoding import (
+    GeocodingError,
+    GeocodingResult,
+    OpenMeteoGeocoder,
+)
 from plant_health.weather.open_meteo import OpenMeteoProvider
 from plant_health.weather.provider import (
     WeatherProvider,
@@ -12,6 +17,9 @@ from plant_health.weather.service import (
 )
 
 __all__ = [
+    "GeocodingError",
+    "GeocodingResult",
+    "OpenMeteoGeocoder",
     "OpenMeteoProvider",
     "WeatherCaptureError",
     "WeatherProvider",
