@@ -467,13 +467,13 @@ Review licenses again before any commercial release.
 
 ### Phase 2: Plant records
 
-- [ ] Species
-- [ ] Individual plants
-- [ ] Plant lifecycle
-- [ ] Location history
-- [ ] Containers
-- [ ] Growing methods
-- [ ] Substrates and water culture
+- [x] Species
+- [x] Individual plants
+- [x] Plant lifecycle
+- [x] Location history
+- [x] Containers
+- [x] Growing methods
+- [x] Substrates and water culture
 
 ### Phase 3: Tracking
 
