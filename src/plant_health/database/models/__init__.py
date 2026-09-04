@@ -51,6 +51,14 @@ from plant_health.database.models.plant import (
     Plant,
     PlantStatus,
 )
+from plant_health.database.models.recommendation import (
+    Recommendation,
+    RecommendationOutcome,
+    RecommendationResult,
+    RecommendationSource,
+    RecommendationStatus,
+    RecommendationType,
+)
 from plant_health.database.models.site import Site, SiteType, TerrainPosition
 from plant_health.database.models.space import Space, SpaceType
 from plant_health.database.models.species import Species
@@ -60,6 +68,13 @@ from plant_health.database.models.substrate import (
     SubstrateComponent,
     SubstrateMix,
     SubstrateMixComponent,
+)
+from plant_health.database.models.task import (
+    Task,
+    TaskPriority,
+    TaskSource,
+    TaskStatus,
+    TaskType,
 )
 from plant_health.database.models.treatment import (
     Treatment,
@@ -106,6 +121,12 @@ __all__ = [
     "PlantObservation",
     "PlantStatus",
     "PlantSubstrateHistory",
+    "Recommendation",
+    "RecommendationOutcome",
+    "RecommendationResult",
+    "RecommendationSource",
+    "RecommendationStatus",
+    "RecommendationType",
     "Site",
     "SiteType",
     "Space",
@@ -115,6 +136,11 @@ __all__ = [
     "SubstrateComponent",
     "SubstrateMix",
     "SubstrateMixComponent",
+    "Task",
+    "TaskPriority",
+    "TaskSource",
+    "TaskStatus",
+    "TaskType",
     "TerrainPosition",
     "TimestampMixin",
     "Treatment",
