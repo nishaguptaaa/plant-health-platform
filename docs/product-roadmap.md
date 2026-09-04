@@ -498,7 +498,7 @@ Review licenses again before any commercial release.
 
 ### Phase 5: Application
 
-- [ ] Streamlit interface
+- [x] Streamlit interface
 - [ ] Add and update plants
 - [ ] Move plants
 - [ ] Record care
