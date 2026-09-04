@@ -1,6 +1,17 @@
 """SQLAlchemy database models."""
 
 from plant_health.database.models.common import TimestampMixin, UUIDPrimaryKeyMixin
+from plant_health.database.models.container import (
+    Container,
+    ContainerMaterial,
+    ContainerType,
+    PlantContainerHistory,
+    PlantContainerRole,
+)
+from plant_health.database.models.cultivation import (
+    GrowingMethodType,
+    PlantCultivationHistory,
+)
 from plant_health.database.models.history import (
     LifecycleEventType,
     LocationChangeReason,
@@ -34,7 +45,11 @@ from plant_health.database.models.zone import (
 )
 
 __all__ = [
+    "Container",
+    "ContainerMaterial",
+    "ContainerType",
     "EnvironmentalZone",
+    "GrowingMethodType",
     "Household",
     "HouseholdMembership",
     "HouseholdRole",
@@ -46,6 +61,9 @@ __all__ = [
     "ObstructionLevel",
     "OrientationSource",
     "Plant",
+    "PlantContainerHistory",
+    "PlantContainerRole",
+    "PlantCultivationHistory",
     "PlantLifecycleEvent",
     "PlantLocationHistory",
     "PlantStatus",

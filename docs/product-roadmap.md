@@ -471,8 +471,8 @@ Review licenses again before any commercial release.
 - [x] Individual plants
 - [x] Plant lifecycle
 - [x] Location history
-- [ ] Containers
-- [ ] Growing methods
+- [x] Containers
+- [x] Growing methods
 - [ ] Substrates and water culture
 
 ### Phase 3: Tracking
