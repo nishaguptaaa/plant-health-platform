@@ -13,8 +13,14 @@ from plant_health.database.models.light import (
     OrientationSource,
     ZoneLightSource,
 )
+from plant_health.database.models.plant import (
+    IdentificationStatus,
+    Plant,
+    PlantStatus,
+)
 from plant_health.database.models.site import Site, SiteType, TerrainPosition
 from plant_health.database.models.space import Space, SpaceType
+from plant_health.database.models.species import Species
 from plant_health.database.models.zone import (
     EnvironmentalZone,
     ObstructionLevel,
@@ -26,14 +32,18 @@ __all__ = [
     "Household",
     "HouseholdMembership",
     "HouseholdRole",
+    "IdentificationStatus",
     "LightSource",
     "LightSourceType",
     "ObstructionLevel",
     "OrientationSource",
+    "Plant",
+    "PlantStatus",
     "Site",
     "SiteType",
     "Space",
     "SpaceType",
+    "Species",
     "TerrainPosition",
     "TimestampMixin",
     "UUIDPrimaryKeyMixin",

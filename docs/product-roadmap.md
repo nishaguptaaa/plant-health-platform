@@ -467,8 +467,8 @@ Review licenses again before any commercial release.
 
 ### Phase 2: Plant records
 
-- [ ] Species
-- [ ] Individual plants
+- [x] Species
+- [x] Individual plants
 - [ ] Plant lifecycle
 - [ ] Location history
 - [ ] Containers
