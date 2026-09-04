@@ -487,11 +487,13 @@ Review licenses again before any commercial release.
 
 ### Phase 4: Environment
 
+### Phase 4: Environment
+
 - [x] Weather snapshots
 - [x] Weather-provider interface
 - [x] Open-Meteo integration
-- [ ] Manual light measurements
-- [ ] Light estimation
+- [x] Manual light measurements
+- [x] Light estimation
 - [ ] Optional sensors
 
 ### Phase 5: Application
