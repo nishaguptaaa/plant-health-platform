@@ -5,9 +5,15 @@ from plant_health.services.household import (
     HouseholdSetupResult,
     create_household_with_owner,
 )
+from plant_health.services.site import (
+    SiteSetupError,
+    create_site,
+)
 
 __all__ = [
     "HouseholdSetupError",
     "HouseholdSetupResult",
+    "SiteSetupError",
     "create_household_with_owner",
+    "create_site",
 ]
