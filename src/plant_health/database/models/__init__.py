@@ -41,6 +41,11 @@ from plant_health.database.models.light import (
     OrientationSource,
     ZoneLightSource,
 )
+from plant_health.database.models.measurement import (
+    EnvironmentalMeasurement,
+    LightMeasurementContext,
+    MeasurementSource,
+)
 from plant_health.database.models.observation import (
     ObservationSource,
     ObservationType,
@@ -99,6 +104,7 @@ __all__ = [
     "Container",
     "ContainerMaterial",
     "ContainerType",
+    "EnvironmentalMeasurement",
     "EnvironmentalZone",
     "GrowingMethodType",
     "HealthIssue",
@@ -110,9 +116,11 @@ __all__ = [
     "HouseholdRole",
     "IdentificationStatus",
     "LifecycleEventType",
+    "LightMeasurementContext",
     "LightSource",
     "LightSourceType",
     "LocationChangeReason",
+    "MeasurementSource",
     "ObservationSource",
     "ObservationType",
     "ObstructionLevel",
