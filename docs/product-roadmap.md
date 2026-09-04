@@ -473,7 +473,7 @@ Review licenses again before any commercial release.
 - [x] Location history
 - [x] Containers
 - [x] Growing methods
-- [ ] Substrates and water culture
+- [x] Substrates and water culture
 
 ### Phase 3: Tracking
 

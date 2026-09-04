@@ -38,6 +38,13 @@ from plant_health.database.models.plant import (
 from plant_health.database.models.site import Site, SiteType, TerrainPosition
 from plant_health.database.models.space import Space, SpaceType
 from plant_health.database.models.species import Species
+from plant_health.database.models.substrate import (
+    PlantSubstrateHistory,
+    SubstrateCategory,
+    SubstrateComponent,
+    SubstrateMix,
+    SubstrateMixComponent,
+)
 from plant_health.database.models.zone import (
     EnvironmentalZone,
     ObstructionLevel,
@@ -67,11 +74,16 @@ __all__ = [
     "PlantLifecycleEvent",
     "PlantLocationHistory",
     "PlantStatus",
+    "PlantSubstrateHistory",
     "Site",
     "SiteType",
     "Space",
     "SpaceType",
     "Species",
+    "SubstrateCategory",
+    "SubstrateComponent",
+    "SubstrateMix",
+    "SubstrateMixComponent",
     "TerrainPosition",
     "TimestampMixin",
     "UUIDPrimaryKeyMixin",
