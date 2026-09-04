@@ -477,13 +477,13 @@ Review licenses again before any commercial release.
 
 ### Phase 3: Tracking
 
-- [ ] Observations
-- [ ] Care events
-- [ ] Health issues
-- [ ] Treatments
-- [ ] Tasks
-- [ ] Recommendations
-- [ ] Outcomes
+- [x] Observations
+- [x] Care events
+- [x] Health issues
+- [x] Treatments
+- [x] Tasks
+- [x] Recommendations
+- [x] Outcomes
 
 ### Phase 4: Environment
 
