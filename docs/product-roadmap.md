@@ -462,8 +462,8 @@ Review licenses again before any commercial release.
 - [x] Spaces
 - [x] Environmental zones
 - [x] Multiple light sources
-- [ ] Alembic migrations
-- [ ] Initial local database
+- [x] Alembic migrations
+- [x] Initial local database
 
 ### Phase 2: Plant records
 
