@@ -499,10 +499,23 @@ Review licenses again before any commercial release.
 ### Phase 5: Application
 
 - [x] Streamlit interface
+- [x] Household setup
+- [x] Site setup with privacy-aware location search
+- [x] Room and growing-space setup
+- [x] Plant-placement zone setup
+- [x] Places hierarchy view
+- [x] Places list view
+- [ ] Rename and edit households, sites, spaces, and zones
+- [ ] Deactivate and safely delete place records
+- [ ] Optional private floor-plan map
+- [ ] Manually draw simple room shapes
+- [ ] Optionally upload a user-provided floor plan
+- [ ] Drag zones to approximate positions on the map
+- [ ] Display plant icons and plant counts by room or zone
 - [ ] Add and update plants
-- [ ] Move plants
+- [ ] Move plants between zones
 - [ ] Record care
-- [ ] Review history
+- [ ] Review plant history
 - [ ] View analytics
 
 ### Phase 6: AI and ML
@@ -516,14 +529,25 @@ Review licenses again before any commercial release.
 - [ ] Placement optimization
 - [ ] Model-version tracking
 
-### Phase 7: Optional product expansion
+### Phase 7: Family access and deployment
 
-- [ ] Authentication
+- [ ] Real user authentication
+- [ ] Automatically create a private personal household
+- [ ] Family invitations and household joining
+- [ ] Owner, admin, caretaker, and member permissions
+- [ ] Household-scoped database queries
 - [ ] Hosted PostgreSQL
-- [ ] Tenant isolation
+- [ ] PostgreSQL row-level security
+- [ ] Persistent photo and floor-plan storage
+- [ ] Automated database backups
+- [ ] Secure private hosting
+- [ ] Privacy, export, and deletion controls
+
+### Phase 8: Optional product expansion
+
 - [ ] Mobile room scanning
+- [ ] Installable mobile web app
 - [ ] React or Next.js frontend
 - [ ] FastAPI backend
-- [ ] Privacy and deletion controls
 - [ ] Commercial license review
 - [ ] Billing only if a commercial product is pursued
