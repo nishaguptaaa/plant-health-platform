@@ -43,6 +43,7 @@ from plant_health.services import (
     create_space,
     load_place_hierarchy,
 )
+from plant_health.ui import render_place_management
 from plant_health.weather import (
     GeocodingError,
     GeocodingResult,
@@ -312,11 +313,12 @@ def render_places() -> None:
         )
         return
 
-    hierarchy_tab, list_tab, map_tab = st.tabs(
+    hierarchy_tab, list_tab, map_tab, manage_tab = st.tabs(
         [
             "Hierarchy",
             "List",
             "Map",
+            "Manage",
         ]
     )
 
@@ -463,6 +465,12 @@ Planned map features:
 - Display plant icons and plant counts
 - Keep floor-plan information local and private
 """
+        )
+
+    with manage_tab:
+        render_place_management(
+            get_session_factory(),
+            places=places,
         )
 
 

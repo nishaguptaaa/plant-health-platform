@@ -505,8 +505,11 @@ Review licenses again before any commercial release.
 - [x] Plant-placement zone setup
 - [x] Places hierarchy view
 - [x] Places list view
-- [ ] Rename and edit households, sites, spaces, and zones
-- [ ] Deactivate and safely delete place records
+- [x] Rename households, sites, spaces, and zones
+- [x] Deactivate sites, spaces, and zones without deleting history
+- [ ] Reactivate inactive sites, spaces, and zones
+- [ ] Edit place details beyond their names
+- [ ] Safely delete place records when appropriate
 - [ ] Optional private floor-plan map
 - [ ] Manually draw simple room shapes
 - [ ] Optionally upload a user-provided floor plan
