@@ -5,6 +5,16 @@ from plant_health.services.household import (
     HouseholdSetupResult,
     create_household_with_owner,
 )
+from plant_health.services.place_management import (
+    PlaceManagementError,
+    deactivate_site,
+    deactivate_space,
+    deactivate_zone,
+    rename_household,
+    rename_site,
+    rename_space,
+    rename_zone,
+)
 from plant_health.services.places import (
     HouseholdPlaces,
     SitePlace,
@@ -23,6 +33,7 @@ __all__ = [
     "HouseholdPlaces",
     "HouseholdSetupError",
     "HouseholdSetupResult",
+    "PlaceManagementError",
     "SitePlace",
     "SiteSetupError",
     "SpacePlace",
@@ -33,5 +44,12 @@ __all__ = [
     "create_household_with_owner",
     "create_site",
     "create_space",
+    "deactivate_site",
+    "deactivate_space",
+    "deactivate_zone",
     "load_place_hierarchy",
+    "rename_household",
+    "rename_site",
+    "rename_space",
+    "rename_zone",
 ]
