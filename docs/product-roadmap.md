@@ -515,7 +515,9 @@ Review licenses again before any commercial release.
 - [ ] Optionally upload a user-provided floor plan
 - [ ] Drag zones to approximate positions on the map
 - [ ] Display plant icons and plant counts by room or zone
-- [ ] Add and update plants
+- [x] Add individual plants and assign their initial zones
+- [ ] Browse and search the plant collection
+- [ ] Edit plant details and identification
 - [ ] Move plants between zones
 - [ ] Record care
 - [ ] Review plant history

@@ -43,7 +43,10 @@ from plant_health.services import (
     create_space,
     load_place_hierarchy,
 )
-from plant_health.ui import render_place_management
+from plant_health.ui import (
+    render_place_management,
+    render_plant_setup,
+)
 from plant_health.weather import (
     GeocodingError,
     GeocodingResult,
@@ -1050,6 +1053,7 @@ st.caption(
 (
     dashboard_tab,
     places_tab,
+    plants_tab,
     household_tab,
     site_tab,
     space_tab,
@@ -1058,6 +1062,7 @@ st.caption(
     [
         "Dashboard",
         "Places",
+        "Plants",
         "Household setup",
         "Site setup",
         "Space setup",
@@ -1070,6 +1075,12 @@ with dashboard_tab:
 
 with places_tab:
     render_places()
+
+with plants_tab:
+    render_plant_setup(
+        get_session_factory(),
+        places=load_places(),
+    )
 
 with household_tab:
     render_household_setup()

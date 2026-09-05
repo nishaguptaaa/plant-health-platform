@@ -22,6 +22,11 @@ from plant_health.services.places import (
     ZonePlace,
     load_place_hierarchy,
 )
+from plant_health.services.plant import (
+    PlantSetupError,
+    PlantSetupResult,
+    create_plant_with_location,
+)
 from plant_health.services.site import SiteSetupError, create_site
 from plant_health.services.space import SpaceSetupError, create_space
 from plant_health.services.zone import (
@@ -34,6 +39,8 @@ __all__ = [
     "HouseholdSetupError",
     "HouseholdSetupResult",
     "PlaceManagementError",
+    "PlantSetupError",
+    "PlantSetupResult",
     "SitePlace",
     "SiteSetupError",
     "SpacePlace",
@@ -42,6 +49,7 @@ __all__ = [
     "ZoneSetupError",
     "create_environmental_zone",
     "create_household_with_owner",
+    "create_plant_with_location",
     "create_site",
     "create_space",
     "deactivate_site",
