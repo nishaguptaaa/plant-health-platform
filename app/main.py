@@ -42,10 +42,12 @@ from plant_health.services import (
     create_site,
     create_space,
     load_place_hierarchy,
+    load_plant_collection,
 )
 from plant_health.ui import (
     render_place_management,
     render_plant_collection,
+    render_plant_management,
     render_plant_setup,
 )
 from plant_health.weather import (
@@ -1078,23 +1080,44 @@ with places_tab:
     render_places()
 
 with plants_tab:
-    browse_plants_tab, add_plant_tab = st.tabs(
+    plant_session_factory = get_session_factory()
+
+    (
+        browse_plants_tab,
+        add_plant_tab,
+        edit_plant_tab,
+    ) = st.tabs(
         [
             "Browse plants",
             "Add plant",
+            "Edit plant",
         ]
     )
 
     with browse_plants_tab:
         render_plant_collection(
-            get_session_factory(),
+            plant_session_factory,
         )
 
     with add_plant_tab:
         render_plant_setup(
-            get_session_factory(),
+            plant_session_factory,
             places=load_places(),
         )
+
+    with edit_plant_tab:
+        try:
+            with plant_session_factory() as session:
+                plants_for_edit = load_plant_collection(session)
+        except SQLAlchemyError:
+            st.error(
+                "The plants available for editing could not be loaded."
+            )
+        else:
+            render_plant_management(
+                plant_session_factory,
+                collection=plants_for_edit,
+            )
 
 with household_tab:
     render_household_setup()
