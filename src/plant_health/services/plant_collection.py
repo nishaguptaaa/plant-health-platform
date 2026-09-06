@@ -43,6 +43,7 @@ class PlantCollectionItem:
     acquisition_source: str | None
     deceased_on: date | None
     notes: str | None
+    zone_id: UUID | None
     site_name: str | None
     space_name: str | None
     zone_name: str | None
@@ -75,6 +76,7 @@ def load_plant_collection(
             Plant.acquisition_source,
             Plant.deceased_on,
             Plant.notes,
+            EnvironmentalZone.id.label("zone_id"),
             Site.name.label("site_name"),
             Space.name.label("space_name"),
             EnvironmentalZone.name.label("zone_name"),
@@ -137,6 +139,7 @@ def load_plant_collection(
             acquisition_source=row.acquisition_source,
             deceased_on=row.deceased_on,
             notes=row.notes,
+            zone_id=row.zone_id,
             site_name=row.site_name,
             space_name=row.space_name,
             zone_name=row.zone_name,

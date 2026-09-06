@@ -515,7 +515,7 @@ Review licenses again before any commercial release.
 
 #### Core plant-care workflows
 
-- [ ] Move plants between zones while preserving location history
+- [x] Move plants between zones while preserving location history
 - [ ] Record care events
 - [ ] Complete, snooze, or skip tasks with a recorded reason
 - [ ] Build a task-focused Today dashboard
