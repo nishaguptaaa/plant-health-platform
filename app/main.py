@@ -45,6 +45,7 @@ from plant_health.services import (
 )
 from plant_health.ui import (
     render_place_management,
+    render_plant_collection,
     render_plant_setup,
 )
 from plant_health.weather import (
@@ -1077,10 +1078,23 @@ with places_tab:
     render_places()
 
 with plants_tab:
-    render_plant_setup(
-        get_session_factory(),
-        places=load_places(),
+    browse_plants_tab, add_plant_tab = st.tabs(
+        [
+            "Browse plants",
+            "Add plant",
+        ]
     )
+
+    with browse_plants_tab:
+        render_plant_collection(
+            get_session_factory(),
+        )
+
+    with add_plant_tab:
+        render_plant_setup(
+            get_session_factory(),
+            places=load_places(),
+        )
 
 with household_tab:
     render_household_setup()
