@@ -517,7 +517,7 @@ Review licenses again before any commercial release.
 - [ ] Display plant icons and plant counts by room or zone
 - [x] Add individual plants and assign their initial zones
 - [x] Browse and search the plant collection
-- [ ] Edit plant details and identification
+- [x] Edit plant details and identification
 - [ ] Move plants between zones
 - [ ] Record care
 - [ ] Review plant history

@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import date
+from decimal import Decimal
 from uuid import UUID
 
 from sqlalchemy import and_, select
@@ -32,11 +33,16 @@ class PlantCollectionItem:
     household_name: str
     plant_code: str
     nickname: str | None
+    cultivar_name: str | None
     status: PlantStatus
     identification_status: IdentificationStatus
+    identification_confidence: Decimal | None
     scientific_name: str | None
     common_name: str | None
     acquired_on: date | None
+    acquisition_source: str | None
+    deceased_on: date | None
+    notes: str | None
     site_name: str | None
     space_name: str | None
     zone_name: str | None
@@ -59,11 +65,16 @@ def load_plant_collection(
             Household.name.label("household_name"),
             Plant.plant_code,
             Plant.nickname,
+            Plant.cultivar_name,
             Plant.status,
             Plant.identification_status,
+            Plant.identification_confidence,
             Species.scientific_name,
             Species.primary_common_name.label("common_name"),
             Plant.acquired_on,
+            Plant.acquisition_source,
+            Plant.deceased_on,
+            Plant.notes,
             Site.name.label("site_name"),
             Space.name.label("space_name"),
             EnvironmentalZone.name.label("zone_name"),
@@ -116,11 +127,16 @@ def load_plant_collection(
             household_name=row.household_name,
             plant_code=row.plant_code,
             nickname=row.nickname,
+            cultivar_name=row.cultivar_name,
             status=row.status,
             identification_status=row.identification_status,
+            identification_confidence=row.identification_confidence,
             scientific_name=row.scientific_name,
             common_name=row.common_name,
             acquired_on=row.acquired_on,
+            acquisition_source=row.acquisition_source,
+            deceased_on=row.deceased_on,
+            notes=row.notes,
             site_name=row.site_name,
             space_name=row.space_name,
             zone_name=row.zone_name,
