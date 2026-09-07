@@ -36,6 +36,11 @@ from plant_health.services.plant_management import (
     PlantManagementResult,
     update_plant_details,
 )
+from plant_health.services.plant_movement import (
+    PlantMovementError,
+    PlantMovementResult,
+    move_plant,
+)
 from plant_health.services.site import SiteSetupError, create_site
 from plant_health.services.space import SpaceSetupError, create_space
 from plant_health.services.zone import (
@@ -51,6 +56,8 @@ __all__ = [
     "PlantCollectionItem",
     "PlantManagementError",
     "PlantManagementResult",
+    "PlantMovementError",
+    "PlantMovementResult",
     "PlantSetupError",
     "PlantSetupResult",
     "SitePlace",
@@ -69,6 +76,7 @@ __all__ = [
     "deactivate_zone",
     "load_place_hierarchy",
     "load_plant_collection",
+    "move_plant",
     "rename_household",
     "rename_site",
     "rename_space",

@@ -498,6 +498,8 @@ Review licenses again before any commercial release.
 
 ### Phase 5: Application
 
+#### Completed application foundation
+
 - [x] Streamlit interface
 - [x] Household setup
 - [x] Site setup with privacy-aware location search
@@ -507,31 +509,57 @@ Review licenses again before any commercial release.
 - [x] Places list view
 - [x] Rename households, sites, spaces, and zones
 - [x] Deactivate sites, spaces, and zones without deleting history
+- [x] Add individual plants and assign their initial zones
+- [x] Browse and search the plant collection
+- [x] Edit plant details and identification
+
+#### Core plant-care workflows
+
+- [x] Move plants between zones while preserving location history
+- [ ] Record care events
+- [ ] Complete, snooze, or skip tasks with a recorded reason
+- [ ] Build a task-focused Today dashboard
+- [ ] Display overdue tasks and plants needing attention
+- [ ] Create unified plant profile pages
+- [ ] Add quick actions for Water, Observe, Move, Treat, and Add photo
+- [ ] Add local plant photograph storage
+- [ ] Display plant photographs in grid and list views
+- [ ] Add plant health and next-care indicators to collection cards
+- [ ] Review plant history in a chronological timeline
+- [ ] Compare progress photographs
+- [ ] Display container, substrate, care, health, and movement history
+- [ ] Add species toxicity and household-safety information
+- [ ] Add unit and display preferences
+- [ ] View care, health, environment, and outcome analytics
+
+#### Place management
+
 - [ ] Reactivate inactive sites, spaces, and zones
 - [ ] Edit place details beyond their names
 - [ ] Safely delete place records when appropriate
+
+#### Optional spatial views
+
 - [ ] Optional private floor-plan map
 - [ ] Manually draw simple room shapes
 - [ ] Optionally upload a user-provided floor plan
 - [ ] Drag zones to approximate positions on the map
 - [ ] Display plant icons and plant counts by room or zone
-- [x] Add individual plants and assign their initial zones
-- [x] Browse and search the plant collection
-- [x] Edit plant details and identification
-- [ ] Move plants between zones
-- [ ] Record care
-- [ ] Review plant history
-- [ ] View analytics
 
 ### Phase 6: AI and ML
 
 - [ ] Local natural-language parsing
-- [ ] Human-confirmation workflow
+- [ ] Human-confirmation workflow for identification and diagnosis
+- [ ] Display identification confidence and alternative matches
 - [ ] Local image analysis
 - [ ] Public image datasets
 - [ ] Computer-vision experiments
+- [ ] Guided symptom-recording workflow
+- [ ] Context-aware diagnosis using care and environment history
+- [ ] Explain possible causes instead of asserting uncertain diagnoses
 - [ ] Longitudinal health models
 - [ ] Placement optimization
+- [ ] Compare outcomes after treatment or relocation
 - [ ] Model-version tracking
 
 ### Phase 7: Family access and deployment
@@ -541,9 +569,15 @@ Review licenses again before any commercial release.
 - [ ] Family invitations and household joining
 - [ ] Owner, admin, caretaker, and member permissions
 - [ ] Household-scoped database queries
+- [ ] Assign tasks to household members
+- [ ] Record which household member performed each care event
+- [ ] Household activity feed
+- [ ] Temporary caretaker and vacation access
+- [ ] Vacation care instructions
+- [ ] Household care notifications
 - [ ] Hosted PostgreSQL
 - [ ] PostgreSQL row-level security
-- [ ] Persistent photo and floor-plan storage
+- [ ] Persistent private photo and floor-plan storage
 - [ ] Automated database backups
 - [ ] Secure private hosting
 - [ ] Privacy, export, and deletion controls
@@ -551,6 +585,7 @@ Review licenses again before any commercial release.
 ### Phase 8: Optional product expansion
 
 - [ ] Mobile room scanning
+- [ ] Augmented-reality sunlight visualization
 - [ ] Installable mobile web app
 - [ ] React or Next.js frontend
 - [ ] FastAPI backend

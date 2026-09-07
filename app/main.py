@@ -48,6 +48,7 @@ from plant_health.ui import (
     render_place_management,
     render_plant_collection,
     render_plant_management,
+    render_plant_movement,
     render_plant_setup,
 )
 from plant_health.weather import (
@@ -1086,11 +1087,13 @@ with plants_tab:
         browse_plants_tab,
         add_plant_tab,
         edit_plant_tab,
+        move_plant_tab,
     ) = st.tabs(
         [
             "Browse plants",
             "Add plant",
             "Edit plant",
+            "Move plant",
         ]
     )
 
@@ -1117,6 +1120,21 @@ with plants_tab:
             render_plant_management(
                 plant_session_factory,
                 collection=plants_for_edit,
+            )
+
+    with move_plant_tab:
+        try:
+            with plant_session_factory() as session:
+                plants_for_movement = load_plant_collection(session)
+        except SQLAlchemyError:
+            st.error(
+                "The plants available for movement could not be loaded."
+            )
+        else:
+            render_plant_movement(
+                plant_session_factory,
+                collection=plants_for_movement,
+                places=load_places(),
             )
 
 with household_tab:
