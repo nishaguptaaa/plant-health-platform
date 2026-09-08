@@ -42,6 +42,7 @@ class CareEventType(StrEnum):
     ROTATING = "rotating"
     PEST_TREATMENT = "pest_treatment"
     PROPAGATION = "propagation"
+    MISTING = "misting"
     OTHER = "other"
 
 

@@ -1,5 +1,6 @@
 """Application services for the Plant Health Platform."""
 
+from plant_health.services.care import CareRecordingError, record_care_event
 from plant_health.services.household import (
     HouseholdSetupError,
     HouseholdSetupResult,
@@ -49,6 +50,7 @@ from plant_health.services.zone import (
 )
 
 __all__ = [
+    "CareRecordingError",
     "HouseholdPlaces",
     "HouseholdSetupError",
     "HouseholdSetupResult",
@@ -77,6 +79,7 @@ __all__ = [
     "load_place_hierarchy",
     "load_plant_collection",
     "move_plant",
+    "record_care_event",
     "rename_household",
     "rename_site",
     "rename_space",
