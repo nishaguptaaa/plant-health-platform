@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Annotated
+from uuid import UUID
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,7 +15,11 @@ from plant_health.api.schemas import (
     CareEventOut,
     PlantCollectionItemOut,
 )
-from plant_health.services import CareRecordingError, record_care_event
+from plant_health.services import (
+    CareRecordingError,
+    load_care_history,
+    record_care_event,
+)
 from plant_health.services.plant_collection import load_plant_collection
 
 app = FastAPI(title="Plant Health Platform API")
@@ -59,6 +64,7 @@ def create_care_event(
             occurred_at=payload.occurred_at,
             performed_by_user_id=payload.performed_by_user_id,
             source=payload.source,
+            watering_method=payload.watering_method,
             amount_ml=payload.amount_ml,
             fertilizer_name=payload.fertilizer_name,
             fertilizer_dilution_ratio=payload.fertilizer_dilution_ratio,
@@ -69,3 +75,24 @@ def create_care_event(
         )
     except CareRecordingError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
+
+
+@app.get(
+    "/plants/{plant_id}/care-events",
+    response_model=list[CareEventOut],
+)
+def list_care_events(
+    plant_id: UUID,
+    household_id: UUID,
+    session: DbSession,
+) -> list[CareEventOut]:
+    """Return a plant's recorded care events, most recent first."""
+
+    try:
+        return load_care_history(
+            session,
+            household_id=household_id,
+            plant_id=plant_id,
+        )
+    except CareRecordingError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error

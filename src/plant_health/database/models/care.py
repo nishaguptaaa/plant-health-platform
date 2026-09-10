@@ -55,6 +55,13 @@ class CareEventSource(StrEnum):
     IMPORTED = "imported"
 
 
+class WateringMethod(StrEnum):
+    """How water was applied during a watering-related care event."""
+
+    TOP = "top"
+    BOTTOM = "bottom"
+
+
 class CareEvent(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     """A timestamped care action performed for one plant."""
 
@@ -112,6 +119,15 @@ class CareEvent(UUIDPrimaryKeyMixin, TimestampMixin, Base):
         ),
         default=CareEventSource.MANUAL,
         nullable=False,
+    )
+    watering_method: Mapped[WateringMethod | None] = mapped_column(
+        Enum(
+            WateringMethod,
+            name="watering_method",
+            native_enum=False,
+            validate_strings=True,
+        ),
+        nullable=True,
     )
     amount_ml: Mapped[Decimal | None] = mapped_column(
         Numeric(8, 2),

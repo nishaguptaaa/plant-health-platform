@@ -16,6 +16,7 @@ from plant_health.database.models import (
     CareEventType,
     HouseholdMembership,
     Plant,
+    WateringMethod,
 )
 from plant_health.database.models.common import utc_now
 
@@ -52,6 +53,7 @@ def record_care_event(
     occurred_at: datetime | None = None,
     performed_by_user_id: UUID | None = None,
     source: CareEventSource = CareEventSource.MANUAL,
+    watering_method: WateringMethod | None = None,
     amount_ml: Decimal | None = None,
     fertilizer_name: str | None = None,
     fertilizer_dilution_ratio: Decimal | None = None,
@@ -120,6 +122,7 @@ def record_care_event(
         occurred_at=event_time,
         event_type=event_type,
         source=source,
+        watering_method=watering_method,
         amount_ml=amount_ml,
         fertilizer_name=clean_fertilizer_name,
         fertilizer_dilution_ratio=fertilizer_dilution_ratio,
@@ -143,3 +146,27 @@ def record_care_event(
         raise
 
     return care_event
+
+
+def load_care_history(
+    session: Session,
+    *,
+    household_id: UUID,
+    plant_id: UUID,
+) -> list[CareEvent]:
+    """Load every recorded care event for one plant, most recent first."""
+
+    plant = session.get(Plant, plant_id)
+
+    if plant is None or plant.household_id != household_id:
+        raise CareRecordingError(
+            "The selected plant does not belong to this household."
+        )
+
+    statement = (
+        select(CareEvent)
+        .where(CareEvent.plant_id == plant_id)
+        .order_by(CareEvent.occurred_at.desc())
+    )
+
+    return list(session.scalars(statement).all())
