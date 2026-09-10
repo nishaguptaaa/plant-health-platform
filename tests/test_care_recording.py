@@ -20,11 +20,13 @@ from plant_health.database.models import (
     Space,
     SpaceType,
     User,
+    WateringMethod,
     ZoneType,
 )
 from plant_health.services import (
     CareRecordingError,
     create_plant_with_location,
+    load_care_history,
     record_care_event,
 )
 
@@ -296,3 +298,91 @@ def test_record_care_event_rejects_non_member_recorder() -> None:
                 event_type=CareEventType.WATERING,
                 performed_by_user_id=outsider.id,
             )
+
+
+def test_load_care_history_returns_events_most_recent_first() -> None:
+    """Care history should be ordered with the newest event first."""
+
+    engine = create_database_engine("sqlite+pysqlite:///:memory:")
+    Base.metadata.create_all(engine)
+
+    with Session(engine) as session:
+        household_id, plant_id = _create_plant(session)
+
+        record_care_event(
+            session,
+            household_id=household_id,
+            plant_id=plant_id,
+            event_type=CareEventType.WATERING,
+            occurred_at=datetime(2026, 1, 1, tzinfo=UTC),
+        )
+        record_care_event(
+            session,
+            household_id=household_id,
+            plant_id=plant_id,
+            event_type=CareEventType.MISTING,
+            occurred_at=datetime(2026, 3, 1, tzinfo=UTC),
+        )
+        record_care_event(
+            session,
+            household_id=household_id,
+            plant_id=plant_id,
+            event_type=CareEventType.PRUNING,
+            occurred_at=datetime(2026, 2, 1, tzinfo=UTC),
+        )
+
+        history = load_care_history(
+            session,
+            household_id=household_id,
+            plant_id=plant_id,
+        )
+
+        assert [event.event_type for event in history] == [
+            CareEventType.MISTING,
+            CareEventType.PRUNING,
+            CareEventType.WATERING,
+        ]
+
+
+def test_load_care_history_rejects_plant_from_another_household() -> None:
+    """Care history cannot be read for another household's plant."""
+
+    engine = create_database_engine("sqlite+pysqlite:///:memory:")
+    Base.metadata.create_all(engine)
+
+    with Session(engine) as session:
+        _, plant_id = _create_plant(session)
+
+        other_household = Household(name="Other Household")
+        session.add(other_household)
+        session.commit()
+
+        with pytest.raises(
+            CareRecordingError,
+            match="does not belong to this household",
+        ):
+            load_care_history(
+                session,
+                household_id=other_household.id,
+                plant_id=plant_id,
+            )
+
+
+def test_record_care_event_saves_watering_method() -> None:
+    """A watering event can record whether it was top or bottom watered."""
+
+    engine = create_database_engine("sqlite+pysqlite:///:memory:")
+    Base.metadata.create_all(engine)
+
+    with Session(engine) as session:
+        household_id, plant_id = _create_plant(session)
+
+        care_event = record_care_event(
+            session,
+            household_id=household_id,
+            plant_id=plant_id,
+            event_type=CareEventType.WATERING,
+            watering_method=WateringMethod.BOTTOM,
+        )
+
+        assert care_event.watering_method == WateringMethod.BOTTOM

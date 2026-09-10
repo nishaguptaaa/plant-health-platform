@@ -4,6 +4,7 @@ from plant_health.database.models.care import (
     CareEvent,
     CareEventSource,
     CareEventType,
+    WateringMethod,
 )
 from plant_health.database.models.common import TimestampMixin, UUIDPrimaryKeyMixin
 from plant_health.database.models.container import (
@@ -161,6 +162,7 @@ __all__ = [
     "TreatmentStatus",
     "UUIDPrimaryKeyMixin",
     "User",
+    "WateringMethod",
     "WeatherCondition",
     "WeatherRecordType",
     "WeatherSnapshot",

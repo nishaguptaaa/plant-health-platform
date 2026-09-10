@@ -13,6 +13,7 @@ from plant_health.database.models import (
     CareEventType,
     IdentificationStatus,
     PlantStatus,
+    WateringMethod,
 )
 
 
@@ -57,6 +58,7 @@ class CareEventCreate(BaseModel):
     occurred_at: datetime | None = None
     performed_by_user_id: UUID | None = None
     source: CareEventSource = CareEventSource.MANUAL
+    watering_method: WateringMethod | None = None
     amount_ml: Decimal | None = None
     fertilizer_name: str | None = None
     fertilizer_dilution_ratio: Decimal | None = None
@@ -77,6 +79,7 @@ class CareEventOut(BaseModel):
     occurred_at: datetime
     event_type: CareEventType
     source: CareEventSource
+    watering_method: WateringMethod | None
     amount_ml: Decimal | None
     fertilizer_name: str | None
     fertilizer_dilution_ratio: Decimal | None
