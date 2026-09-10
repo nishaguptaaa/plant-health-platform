@@ -48,6 +48,13 @@ from plant_health.services.plant_movement import (
 )
 from plant_health.services.site import SiteSetupError, create_site
 from plant_health.services.space import SpaceSetupError, create_space
+from plant_health.services.task import (
+    TaskActionError,
+    complete_task,
+    create_task,
+    skip_task,
+    snooze_task,
+)
 from plant_health.services.zone import (
     ZoneSetupError,
     create_environmental_zone,
@@ -70,13 +77,16 @@ __all__ = [
     "SiteSetupError",
     "SpacePlace",
     "SpaceSetupError",
+    "TaskActionError",
     "ZonePlace",
     "ZoneSetupError",
+    "complete_task",
     "create_environmental_zone",
     "create_household_with_owner",
     "create_plant_with_location",
     "create_site",
     "create_space",
+    "create_task",
     "deactivate_site",
     "deactivate_space",
     "deactivate_zone",
@@ -89,5 +99,7 @@ __all__ = [
     "rename_site",
     "rename_space",
     "rename_zone",
+    "skip_task",
+    "snooze_task",
     "update_plant_details",
 ]
