@@ -52,6 +52,7 @@ from plant_health.services.task import (
     TaskActionError,
     complete_task,
     create_task,
+    load_tasks,
     skip_task,
     snooze_task,
 )
@@ -93,6 +94,7 @@ __all__ = [
     "load_care_history",
     "load_place_hierarchy",
     "load_plant_collection",
+    "load_tasks",
     "move_plant",
     "record_care_event",
     "rename_household",

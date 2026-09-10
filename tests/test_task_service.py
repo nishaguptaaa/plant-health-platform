@@ -25,6 +25,7 @@ from plant_health.services import (
     create_plant_with_location,
     create_task,
     load_care_history,
+    load_tasks,
     skip_task,
     snooze_task,
 )
@@ -342,3 +343,37 @@ def test_skip_task_records_reason() -> None:
 
         assert skipped_task.status == TaskStatus.SKIPPED
         assert skipped_task.notes == "Soil still damp from last week"
+
+
+def test_load_tasks_filters_by_status() -> None:
+    """Loading tasks by status should only return matching tasks."""
+
+    engine = create_database_engine("sqlite+pysqlite:///:memory:")
+    Base.metadata.create_all(engine)
+
+    with Session(engine) as session:
+        household_id, plant_id = _create_plant(session)
+
+        pending_task = create_task(
+            session,
+            household_id=household_id,
+            title="Water Leafy",
+            task_type=TaskType.WATER,
+            plant_id=plant_id,
+        )
+        skipped_task = create_task(
+            session,
+            household_id=household_id,
+            title="Mist Leafy",
+            task_type=TaskType.OTHER,
+            plant_id=plant_id,
+        )
+        skip_task(session, household_id=household_id, task_id=skipped_task.id)
+
+        pending_only = load_tasks(
+            session,
+            household_id=household_id,
+            status=TaskStatus.PENDING,
+        )
+
+        assert [task.id for task in pending_only] == [pending_task.id]

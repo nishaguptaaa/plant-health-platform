@@ -14,11 +14,23 @@ from plant_health.api.schemas import (
     CareEventCreate,
     CareEventOut,
     PlantCollectionItemOut,
+    TaskCompleteRequest,
+    TaskCreate,
+    TaskOut,
+    TaskSkipRequest,
+    TaskSnoozeRequest,
 )
+from plant_health.database.models import TaskStatus
 from plant_health.services import (
     CareRecordingError,
+    TaskActionError,
+    complete_task,
+    create_task,
     load_care_history,
+    load_tasks,
     record_care_event,
+    skip_task,
+    snooze_task,
 )
 from plant_health.services.plant_collection import load_plant_collection
 
@@ -96,3 +108,106 @@ def list_care_events(
         )
     except CareRecordingError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.post("/tasks", response_model=TaskOut, status_code=201)
+def create_new_task(
+    payload: TaskCreate,
+    session: DbSession,
+) -> TaskOut:
+    """Create a new plant-care task."""
+
+    try:
+        return create_task(
+            session,
+            household_id=payload.household_id,
+            title=payload.title,
+            task_type=payload.task_type,
+            plant_id=payload.plant_id,
+            due_at=payload.due_at,
+            repeat_interval_days=payload.repeat_interval_days,
+            priority=payload.priority,
+            source=payload.source,
+            assigned_to_user_id=payload.assigned_to_user_id,
+            description=payload.description,
+            notes=payload.notes,
+        )
+    except TaskActionError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+
+
+@app.get("/tasks", response_model=list[TaskOut])
+def list_household_tasks(
+    household_id: UUID,
+    session: DbSession,
+    status: TaskStatus | None = None,
+) -> list[TaskOut]:
+    """Return a household's tasks, optionally filtered by status."""
+
+    return load_tasks(session, household_id=household_id, status=status)
+
+
+@app.post("/tasks/{task_id}/complete", response_model=TaskOut)
+def complete_existing_task(
+    task_id: UUID,
+    payload: TaskCompleteRequest,
+    session: DbSession,
+) -> TaskOut:
+    """Complete a task, logging a matching care event when applicable."""
+
+    try:
+        return complete_task(
+            session,
+            household_id=payload.household_id,
+            task_id=task_id,
+            completed_at=payload.completed_at,
+            performed_by_user_id=payload.performed_by_user_id,
+            watering_method=payload.watering_method,
+            amount_ml=payload.amount_ml,
+            fertilizer_name=payload.fertilizer_name,
+            fertilizer_dilution_ratio=payload.fertilizer_dilution_ratio,
+            water_ph=payload.water_ph,
+            water_ec_ms_cm=payload.water_ec_ms_cm,
+            product_name=payload.product_name,
+            notes=payload.notes,
+        )
+    except TaskActionError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+
+
+@app.post("/tasks/{task_id}/snooze", response_model=TaskOut)
+def snooze_existing_task(
+    task_id: UUID,
+    payload: TaskSnoozeRequest,
+    session: DbSession,
+) -> TaskOut:
+    """Push a task's due date to a later time."""
+
+    try:
+        return snooze_task(
+            session,
+            household_id=payload.household_id,
+            task_id=task_id,
+            new_due_at=payload.new_due_at,
+        )
+    except TaskActionError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+
+
+@app.post("/tasks/{task_id}/skip", response_model=TaskOut)
+def skip_existing_task(
+    task_id: UUID,
+    payload: TaskSkipRequest,
+    session: DbSession,
+) -> TaskOut:
+    """Skip a task, optionally recording why."""
+
+    try:
+        return skip_task(
+            session,
+            household_id=payload.household_id,
+            task_id=task_id,
+            reason=payload.reason,
+        )
+    except TaskActionError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error

@@ -6,6 +6,7 @@ from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 from uuid import UUID
 
+from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -290,3 +291,21 @@ def skip_task(
         raise
 
     return task
+
+
+def load_tasks(
+    session: Session,
+    *,
+    household_id: UUID,
+    status: TaskStatus | None = None,
+) -> list[Task]:
+    """Load a household's tasks, optionally filtered by status."""
+
+    statement = select(Task).where(Task.household_id == household_id)
+
+    if status is not None:
+        statement = statement.where(Task.status == status)
+
+    statement = statement.order_by(Task.due_at.asc().nulls_last())
+
+    return list(session.scalars(statement).all())
